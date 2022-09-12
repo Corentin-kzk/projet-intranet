@@ -1,0 +1,33 @@
+/* import FONTS Hind, Merriweather,Noto  */
+@import url("https://fonts.googleapis.com/css2?family=Hind:wght@300;400;600&family=Merriweather+Sans:wght@400;500;600&family=Noto+Sans:wght@300;400&display=swap");
+
+*,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* add Font on element */
+
+h1,
+h2,
+h3 {
+  font-family: "Merriweather Sans", sans-serif;
+}
+
+
+p {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+span {
+  font-family: 'Hind', sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+}
