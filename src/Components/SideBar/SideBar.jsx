@@ -1,23 +1,41 @@
 import React from "react";
-import './SideBar.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse, faGear, faList } from "@fortawesome/free-solid-svg-icons";
+import { NavLink } from "react-router-dom";
+import "./SideBar.css";
 
 const SideBar = () => {
   return (
     <>
-      <div className="sidebar">
-        <a href="#home">
-          <i className="fa fa-fw fa-home"></i> Home
-        </a>
-        <a href="#services">
-          <i className="fa fa-fw fa-wrench"></i> Services
-        </a>
-        <a href="#clients">
-          <i className="fa fa-fw fa-user"></i> Clients
-        </a>
-        <a href="#contact">
-          <i className="fa fa-fw fa-envelope"></i> Contact
-        </a>
-      </div>
+      <nav className="sidebar">
+        <NavLink
+          to="/"
+          className="navlinkbuttons"
+          style={(isActive) => ({
+            color: isActive ? "white" : "grey",
+          })}
+        >
+          Home <FontAwesomeIcon icon={faHouse} />
+        </NavLink>
+        <NavLink
+          to="detail"
+          className="navlinkbuttons"
+          style={(isActive) => ({
+            color: isActive ? "white" : "grey",
+          })}
+        >
+          Détails <FontAwesomeIcon icon={faGear} />
+        </NavLink>
+        <NavLink
+          to="list"
+          className="navlinkbuttons"
+          style={(isActive) => ({
+            color: isActive ? "white" : "grey",
+          })}
+        >
+          List <FontAwesomeIcon icon={faList} />
+        </NavLink>
+      </nav>
     </>
   );
 };

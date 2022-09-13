@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import postData from "../../Service/postdata.service";
 import "./Login.css";
 import stockLocalSessions from "../../Service/stocklocalsessions.service";
+import { useDispatch } from "react-redux";
+import { ADD } from "../../reducer/userReducer";
 
 const Login = ({ setToken }) => {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState(false);
+  const dispatch = useDispatch();
 
-  useEffect(() => {}, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await postData("login", {
@@ -22,6 +24,7 @@ const Login = ({ setToken }) => {
     if (data.token) {
       setToken(data.token);
       stockLocalSessions("jwt", data.token);
+      dispatch(ADD(data));
     }
   };
 

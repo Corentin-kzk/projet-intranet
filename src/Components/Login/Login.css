@@ -1,16 +1,4 @@
 /* X-Small devices (portrait phones, less than 576px) */
-.wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-image: url(../../Assets/bg-login-image.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-blend-mode: darken;
-  object-fit: cover;
-}
-
 .login-wrapper {
   height: 520px;
   width: 300px;
@@ -81,7 +69,7 @@ button {
 input.error-input {
   border: solid 1px red;
 }
-label.error-input  p{
+label.error-input p {
   color: red;
 }
 
