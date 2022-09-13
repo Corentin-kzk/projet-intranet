@@ -11,22 +11,25 @@ const Login = () => {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState(false);
+  const [messageError, setMessageError] = useState(null);
   const dispatch = useDispatch();
   
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = await postData("login", {
+    const res = await postData("login", {
       email: username.trim(),
       password: password.trim(),
     });
-    if (data.status === 404) {
+    
+    if (res.status === 404) {
       setError(true);
+      setMessageError(res.data.error)
     }
-    if (data.token) {
-      stockLocalSessions("jwt", data.token);
+    if (res.token) {
+      stockLocalSessions("jwt", res.token);
       dispatch(logIn());
-      dispatch(ADD(data));
+      dispatch(ADD(res));
     }
   };
 
@@ -60,7 +63,7 @@ const Login = () => {
       </form>
       {error && (
         <div className="error">
-          <p>Login ou mot de passe incorect </p>{" "}
+          <p>{messageError}</p>{" "}
         </div>
       )}
     </div>

@@ -1,4 +1,10 @@
-import { faBars, faXmark, faHouse, faGear, faList} from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faXmark,
+  faHouse,
+  faGear,
+  faList,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
@@ -8,14 +14,15 @@ import "./Header.css";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const data = useSelector((state) => state.user.value);
-  const user = data.user;
+  const user = useSelector((state) => {
+    return state.user;
+  });
 
   return (
     <header>
-      <nav id="myNav" class={isOpen ? "overlay open " : "overlay false "}>
+      <nav id="myNav" className={isOpen ? "overlay open " : "overlay false "}>
         <span
-          class="closebtn"
+          className="closebtn"
           onClick={() => {
             setIsOpen(false);
           }}
@@ -23,7 +30,7 @@ const NavBar = () => {
           <FontAwesomeIcon icon={faXmark} />
         </span>
 
-        <div class="overlay-content">
+        <div className="overlay-content">
           <NavLink
             to="/"
             className="navlinkbuttons"
@@ -52,7 +59,7 @@ const NavBar = () => {
             List <FontAwesomeIcon icon={faList} />
           </NavLink>
         </div>
-        <LogOut/>
+        <LogOut />
       </nav>
 
       <span className="open-btn" onClick={() => setIsOpen(true)}>

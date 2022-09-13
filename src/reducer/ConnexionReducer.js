@@ -1,18 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
+import removelocalsession from "../Service/removelocalsession.service";
 
-const initialState ={
-    isConnected : false
-} 
+const token = sessionStorage.getItem("jwt");
+let initialState = {}
+if (!token) {
+  initialState = {
+    isConnected: false,
+  };
+} else {
+    initialState = {
+        isConnected: true,
+      };
+}
+
 
 export const connexionSlice = createSlice({
   name: "connexion",
   initialState,
   reducers: {
     logIn: (state) => {
-      state.isConnected = true
+      state.isConnected = true;
     },
     logOut: (state) => {
       state.isConnected = false;
+      removelocalsession("jwt");
     },
   },
 });

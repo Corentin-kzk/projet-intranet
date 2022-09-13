@@ -1,7 +1,6 @@
 import React from "react";
 import ProfileCard from "../ProfileCard/ProfileCard";
 const List = ({ list }) => {
-  console.log("🚀 ~ file: List.jsx ~ line 4 ~ List ~ list", list);
 
   return (
     <>

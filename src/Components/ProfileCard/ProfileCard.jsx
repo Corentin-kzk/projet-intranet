@@ -11,12 +11,7 @@ import { useSelector } from "react-redux";
 import "./ProfileCard.css";
 
 const ProfileCard = ({ collaborator }) => {
-  const data = useSelector((state) => state.user.value);
-  const user = data.user;
-  console.log(
-    "🚀 ~ file: ProfileCard.jsx ~ line 15 ~ ProfileCard ~ user",
-    user
-  );
+  const user = useSelector((state) => state.user);
 
   return (
     <article className="card" key={Number(collaborator.id)}>

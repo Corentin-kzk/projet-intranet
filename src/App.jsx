@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 
 function App() {
   const {isConnected} = useSelector((state) => state.connexion);
-  console.log(isConnected);
 
   if (!isConnected) {
     return <LoginPage/>;
