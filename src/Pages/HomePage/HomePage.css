@@ -10,3 +10,8 @@ main {
   align-items: center;
   height: calc(100vh - 70px) ;
 }
+
+.button-container {
+  max-width: 300px;
+  padding: 10px;
+}

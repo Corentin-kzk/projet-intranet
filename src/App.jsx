@@ -7,11 +7,14 @@ import "./App.css";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import SettingsPage from "./Pages/SettingsPage/SettingsPage";
 import Header from "./Components/Header/Header"
+import { useSelector } from "react-redux";
 
 function App() {
-  const [token, setToken] = useState();
-  if (!token) {
-    return <LoginPage setToken={setToken} />;
+  const {isConnected} = useSelector((state) => state.connexion);
+  console.log(isConnected);
+
+  if (!isConnected) {
+    return <LoginPage/>;
   }
   return (
     <>

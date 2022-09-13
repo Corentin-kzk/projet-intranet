@@ -4,6 +4,8 @@ import { faHouse, faGear, faList } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 import "./SideBar.css";
 
+import LogOut from "../LogOut/LogOut";
+
 const SideBar = () => {
   return (
     <>
@@ -35,6 +37,7 @@ const SideBar = () => {
         >
           List <FontAwesomeIcon icon={faList} />
         </NavLink>
+        <LogOut />
       </nav>
     </>
   );

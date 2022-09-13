@@ -5,12 +5,14 @@ import "./Login.css";
 import stockLocalSessions from "../../Service/stocklocalsessions.service";
 import { useDispatch } from "react-redux";
 import { ADD } from "../../reducer/userReducer";
+import { logIn } from "../../reducer/ConnexionReducer";
 
-const Login = ({ setToken }) => {
+const Login = () => {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState(false);
   const dispatch = useDispatch();
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,8 +24,8 @@ const Login = ({ setToken }) => {
       setError(true);
     }
     if (data.token) {
-      setToken(data.token);
       stockLocalSessions("jwt", data.token);
+      dispatch(logIn());
       dispatch(ADD(data));
     }
   };
@@ -66,7 +68,3 @@ const Login = ({ setToken }) => {
 };
 
 export default Login;
-
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired,
-};
