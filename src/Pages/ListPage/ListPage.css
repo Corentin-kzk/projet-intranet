@@ -1,0 +1,77 @@
+.list-wrapper {
+  display: flex;
+
+  /* Put a card in the next row when previous cards take all width */
+  flex-wrap: wrap;
+
+  margin-right: -8px;
+  min-height: calc(100vh - 70px);
+  height: auto;
+}
+
+.card {
+  /* There will be 3 cards per row */
+  flex-basis: 25%;
+  min-width: 250px;
+  margin: 20px;
+}
+
+.form-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.search-container {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  /* If you want to place the icon before the text input */
+  flex-direction: row-reverse;
+
+  background-color: #fff;
+  /* Border */
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.form-wrapper select {
+  width: 20%;
+  display: block;
+  height: 60px;
+  background-color: #fff;
+  color: #111;
+  border-radius: 3px;
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: 300;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.search-input {
+  background: #fff;
+  color: #111;
+  border-color: transparent;
+  /* Take available width */
+  flex: 1;
+}
+
+.search-container svg {
+  font-size: 20px;
+  width: 40px;
+  color: #111;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+
+  main {
+    margin: 0;
+  }
+
+  .form-wrapper {
+    flex-direction: column;
+  }
+
+  .search-container , .form-wrapper select {
+    width: 100%;
+  }
+
+}

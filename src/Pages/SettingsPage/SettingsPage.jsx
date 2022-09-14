@@ -2,9 +2,9 @@ import React from 'react';
 
 const SettingsPage = () => {
     return (
-        <div>
-            
-        </div>
+        <main>
+            <h1 style={{color : '#fff'}} >test</h1>
+        </main>
     );
 };
 

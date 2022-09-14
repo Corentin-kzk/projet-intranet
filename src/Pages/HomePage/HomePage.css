@@ -15,3 +15,17 @@ main {
   max-width: 300px;
   padding: 10px;
 }
+
+.main-random-user .card {
+  flex-direction: row;
+}
+
+.main-random-user .card  .card-cover {
+  width: 250px;
+  height: auto;
+}
+
+.main-random-user .card .card-cover .tag {
+  right: auto;
+  left: -35px;
+}

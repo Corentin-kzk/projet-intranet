@@ -1,12 +1,23 @@
-article.card {
-  width: 75%;
-  position: relative;
+.card {
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  align-items: center;
-  background: #fff;
+  background-color: #fff;
+  padding: 0px;
+  border-radius: 15px;
 }
+
+.card-cover {
+  border-radius: 15px 0px;
+  height: 250px;
+  width: 100%;
+  position: relative;
+}
+
+.card-content {
+  /* Take available height */
+  flex: 1;
+}
+
 .tag {
   text-align: center;
   position: absolute;
@@ -24,12 +35,12 @@ article.card {
   height: 100%;
 }
 
-.card-body {
-  padding: 55px;
+.card-content {
+  padding: 1.3rem;
   line-height: 2.4rem;
 }
 
-.card-body ul {
+.card-content ul {
   list-style: none;
 }
 
@@ -43,24 +54,15 @@ article.card {
   -webkit-tap-highlight-color: transparent;
 }
 
-.card-body .button-container {
+.card-content .button-container {
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
 }
 
-.card-body .button-container button {
+.card-content .button-container button {
   margin: 0px 10px;
 }
 .red {
   color: red;
 }
-
-
-@media (min-width: 768px) {
-	article.card {
-	  flex-direction: row;
-	  height: 350px;
-	  width: auto;
-	}
-  }

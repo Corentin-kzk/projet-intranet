@@ -9,20 +9,25 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import "./ProfileCard.css";
+import { useNavigate } from "react-router-dom";
 
 const ProfileCard = ({ collaborator }) => {
   const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
+  const OnRedirect = () => {
+    navigate(`/products/${user?.id}`);
+  };
   return (
     <article className="card" key={Number(collaborator.id)}>
-      <span className="tag"> {collaborator.service}</span>
-
-      <img
-        src={collaborator.photo}
-        alt={`photo de ${collaborator.firstname} ${collaborator.lastname}`}
-      />
-
-      <div className="card-body">
+      <section className="card-cover">
+        <span className="tag"> {collaborator.service}</span>
+        <img
+          src={collaborator.photo}
+          alt={`photo de ${collaborator.firstname} ${collaborator.lastname}`}
+        />
+      </section>
+      <section className="card-content">
         <h2>
           {collaborator.firstname} {collaborator.lastname}
         </h2>
@@ -42,15 +47,20 @@ const ProfileCard = ({ collaborator }) => {
         </ul>
         {user.isAdmin && (
           <div className="button-container">
-            <button class="noselect red">
+            <button className="noselect red">
               {<FontAwesomeIcon icon={faTrash} />}
             </button>
-            <button class="noselect">
+            <button
+              className="noselect"
+              onClick={() => {
+                OnRedirect();
+              }}
+            >
               {<FontAwesomeIcon icon={faPenToSquare} />}
             </button>
           </div>
         )}
-      </div>
+      </section>
     </article>
   );
 };

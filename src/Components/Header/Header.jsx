@@ -41,7 +41,7 @@ const NavBar = () => {
             Home <FontAwesomeIcon icon={faHouse} />
           </NavLink>
           <NavLink
-            to="detail"
+            to="user/setting"
             className="navlinkbuttons"
             style={(isActive) => ({
               color: isActive ? "white" : "grey",
