@@ -1,0 +1,55 @@
+.settings-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-settings {
+  /* Rounded border */
+  border-radius: 50%;
+  height: 180px;
+  width: 180px;
+}
+
+.avatar-image {
+  /* Rounded border */
+  border-radius: 50%;
+
+  /* Take full size */
+  height: 100%;
+  width: 100%;
+}
+
+
+.wrapper-details-forms {
+    width: 80%;
+}
+
+.wrapper-details-forms .container {
+    position: relative;
+}
+
+/*
+Show the label at desired position when the 
+placeholder of input isn't shown
+*/
+.wrapper-details-forms .container__input:not(:placeholder-shown) + .container__label {
+    color: #111;
+    background: #fff;
+    transform: translate(0, -50%);
+    opacity: 1;
+}
+
+.wrapper-details-forms .container__label {
+    display: inherit;
+    margin-top: 0px;
+    /* Position the label */
+    left: 8px;
+    position: absolute;
+    top: 0;
+
+    /* Hide it by default */
+    opacity: 0;
+    transition: all 200ms;
+}
