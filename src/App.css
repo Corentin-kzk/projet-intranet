@@ -1,5 +1,5 @@
 /* import FONTS Hind, Merriweather,Noto  */
-@import url("https://fonts.googleapis.com/css2?family=Hind:wght@300;400;600&family=Merriweather+Sans:wght@400;500;600&family=Noto+Sans:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;500;600&family=Noto+Sans:wght@300;400&display=swap");
 
 *,
 *:before,
@@ -14,15 +14,11 @@
 h1,
 h2,
 h3 {
-  font-family: "Merriweather Sans", sans-serif;
+  font-family: "Merriweather", sans-serif;
 }
 
-p {
+p, input, span, li {
   font-family: "Noto Sans", sans-serif;
-}
-
-span {
-  font-family: "Hind", sans-serif;
 }
 
 .wrapper {

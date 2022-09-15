@@ -16,7 +16,7 @@ const ProfileCard = ({ collaborator }) => {
   const navigate = useNavigate();
 
   const OnRedirect = () => {
-    navigate(`/products/${user?.id}`);
+    navigate(`/collaborator/${collaborator?.id}`);
   };
   return (
     <article className="card" key={Number(collaborator.id)}>

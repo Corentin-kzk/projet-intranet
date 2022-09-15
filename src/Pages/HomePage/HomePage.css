@@ -1,14 +1,15 @@
 main {
   margin-left: 160px; /* Same as the width of the sidenav */
   padding: 0px 10px;
+  backdrop-filter: blur(4px);
 }
 
-.main-random-user{
+.main-random-user {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 70px) ;
+  height: calc(100vh - 70px);
 }
 
 .button-container {
@@ -20,7 +21,7 @@ main {
   flex-direction: row;
 }
 
-.main-random-user .card  .card-cover {
+.main-random-user .card .card-cover {
   width: 250px;
   height: auto;
 }
@@ -28,4 +29,14 @@ main {
 .main-random-user .card .card-cover .tag {
   right: auto;
   left: -35px;
+}
+
+.main-random-user .card {
+  width: 560px;
+}
+
+.main-random-user .card .card-cover img {
+  border-radius: 15px;
+  -webkit-box-shadow: 5px 13px 50px 13px #6e6e6e;
+  box-shadow: 5px 13px 50px 13px #6e6e6e;
 }

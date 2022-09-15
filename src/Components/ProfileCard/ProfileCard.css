@@ -1,13 +1,12 @@
 .card {
   display: flex;
   flex-direction: column;
-  background-color: #fff;
   padding: 0px;
   border-radius: 15px;
 }
 
+
 .card-cover {
-  border-radius: 15px 0px;
   height: 250px;
   width: 100%;
   position: relative;
@@ -16,6 +15,7 @@
 .card-content {
   /* Take available height */
   flex: 1;
+  background-color: #fff;
 }
 
 .tag {
@@ -27,7 +27,6 @@
   width: 100px;
   background: yellow;
   font-weight: 500;
-  font-family: "Hind", sans-serif;
 }
 
 .card img {

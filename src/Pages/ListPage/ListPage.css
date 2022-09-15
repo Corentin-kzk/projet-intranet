@@ -1,6 +1,14 @@
-.list-wrapper {
+.list-main {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.list-wrapper {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   /* Put a card in the next row when previous cards take all width */
   flex-wrap: wrap;
 
@@ -10,8 +18,8 @@
 }
 
 .card {
-  /* There will be 3 cards per row */
-  flex-basis: 25%;
+  /* There will be 4 cards per row */
+  flex-basis: 20%;
   min-width: 250px;
   margin: 20px;
 }
@@ -20,6 +28,7 @@
   display: flex;
   align-items: center;
   flex-direction: row;
+  width: 101%;
 }
 .search-container {
   width: 60%;
@@ -61,7 +70,6 @@
 
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 576px) {
-
   main {
     margin: 0;
   }
@@ -70,8 +78,8 @@
     flex-direction: column;
   }
 
-  .search-container , .form-wrapper select {
+  .search-container,
+  .form-wrapper select {
     width: 100%;
   }
-
 }

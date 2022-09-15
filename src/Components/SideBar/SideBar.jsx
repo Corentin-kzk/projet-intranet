@@ -17,7 +17,8 @@ const SideBar = () => {
             color: isActive ? "white" : "grey",
           })}
         >
-          Home <FontAwesomeIcon icon={faHouse} />
+          <FontAwesomeIcon icon={faHouse} />
+          Home
         </NavLink>
         <NavLink
           to="user/setting"
@@ -26,7 +27,8 @@ const SideBar = () => {
             color: isActive ? "white" : "grey",
           })}
         >
-          Détails <FontAwesomeIcon icon={faGear} />
+          <FontAwesomeIcon icon={faGear} />
+          Détails
         </NavLink>
         <NavLink
           to="list"
@@ -35,7 +37,8 @@ const SideBar = () => {
             color: isActive ? "white" : "grey",
           })}
         >
-          List <FontAwesomeIcon icon={faList} />
+          <FontAwesomeIcon icon={faList} />
+          List
         </NavLink>
         <LogOut />
       </nav>

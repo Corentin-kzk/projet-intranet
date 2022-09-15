@@ -16,7 +16,7 @@ const ListPage = () => {
   }, []);
   console.log(data);
   return (
-    <main className="wrapper">
+    <main className="list-main" >
       <from className="form-wrapper">
         <div class="search-container">
           <input type="text" class="search-input" />

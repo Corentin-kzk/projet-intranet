@@ -21,35 +21,54 @@
   width: 100%;
 }
 
-
 .wrapper-details-forms {
-    width: 80%;
+  width: 80%;
 }
 
 .wrapper-details-forms .container {
-    position: relative;
+  position: relative;
 }
 
 /*
 Show the label at desired position when the 
 placeholder of input isn't shown
 */
-.wrapper-details-forms .container__input:not(:placeholder-shown) + .container__label {
-    color: #111;
-    background: #fff;
-    transform: translate(0, -50%);
-    opacity: 1;
+.wrapper-details-forms
+  .container__input:not(:placeholder-shown)
+  + .container__label {
+  color: #111;
+  background: #fff;
+  transform: translate(0, -50%);
+  opacity: 1;
 }
 
 .wrapper-details-forms .container__label {
-    display: inherit;
-    margin-top: 0px;
-    /* Position the label */
-    left: 8px;
-    position: absolute;
-    top: 0;
+  display: inherit;
+  margin-top: 0px;
+  /* Position the label */
+  left: 8px;
+  position: absolute;
+  top: 0;
 
-    /* Hide it by default */
-    opacity: 0;
-    transition: all 200ms;
+  /* Hide it by default */
+  opacity: 0;
+  transition: all 200ms;
 }
+
+.wrapper-details-forms select {
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.wrapper-details-forms input[type='submit']:hover{
+  background-color: #fff;
+  color: #111;
+}   
+
