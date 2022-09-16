@@ -1,32 +1,34 @@
 .card {
+  width: 400px;
+  position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 0px;
+  border-radius: 15px;
+  background-color: #fff;
+  margin: 20px;
+  margin-top: 80px !important;
+}
+
+.card-cover {
+  border-radius: 15px;
+  position: absolute;
+  top: -20px;
+  width: 14rem;
+  position: relative;
+  -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.41);
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.41);
+}
+
+.card-cover img {
   border-radius: 15px;
 }
 
-
-.card-cover {
-  height: 250px;
-  width: 100%;
-  position: relative;
-}
-
-.card-content {
-  /* Take available height */
-  flex: 1;
-  background-color: #fff;
-}
-
 .tag {
-  text-align: center;
-  position: absolute;
-  right: -35px;
-  top: 18px;
   padding: 15px;
-  width: 100px;
-  background: yellow;
   font-weight: 500;
+  letter-spacing: 3px;
 }
 
 .card img {
@@ -35,14 +37,51 @@
 }
 
 .card-content {
-  padding: 1.3rem;
+  /* Take available height */
+  flex: 1;
+  padding: 1rem;
   line-height: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.card-content h2 {
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+
+  letter-spacing: 2px;
+  text-align: center;
+  font-size: 25px;
+}
+
+.card-content .border {
+  margin: 10px auto;
+  width: 60%;
+  height: 2px;
+  background-color: #111;
+}
+
+.card-content .txt-center {
+  text-align: center;
+}
+.card-content .localisation {
+  font-size: 1.1rem;
+}
 .card-content ul {
+  margin-top: 10px;
   list-style: none;
 }
 
+.card-content ul li {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.card-content ul li svg {
+  margin-right: 10px;
+  font-size: 20px;
+}
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -60,8 +99,43 @@
 }
 
 .card-content .button-container button {
-  margin: 0px 10px;
+  border: 1px solid #111;
+  margin: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
 }
+.card-content .button-container button:hover {
+  margin: 0px 10px;
+  color: #fff;
+  background-color: #111;
+}
+
 .red {
   color: red;
+}
+
+.rs-modal-content {
+  background-color: #111 !important;
+  position: relative;
+}
+.rs-modal-content button {
+  width: 50px;
+  color: #fff;
+  font-size: 30px;
+}
+.rs-modal-content .fixed-top {
+  position: absolute;
+  right: 10px;
+  top: -10px;
+  margin-top: 0px;
+}
+
+.rs-modal-content p {
+  text-align: center;
+  width: 72%;
+  margin: 15px 0px;
 }

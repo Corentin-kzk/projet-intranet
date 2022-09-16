@@ -21,8 +21,8 @@ header p {
 
 @media (min-width: 576px) {
   header {
-    width: calc(100% - 160px);
-    margin-left: 160px;
+    width: calc(100% - 200px);
+    margin-left: 200px;
   }
   .open-btn {
     display: none;

@@ -1,12 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import List from "../../Components/List/List";
 import getData from "../../Service/getdata.service";
 import "./ListPage.css";
+import search from "../../Service/search.service";
 
 const ListPage = () => {
   const [data, setData] = useState(null);
+  const [listData, setlistData] = useState([]);
+  const [nbrOfCard, setNbrOfCard] = useState(7);
+  const [selectorSearcehBy, setselctorSearchBy] = useState("name");
+  const [selectorSearcehByWork, setselectorSearcehByWork] = useState("null");
+  const searchTextField = useRef();
+
   useEffect(() => {
     const getUser = async () => {
       let collabData = await getData("collaborateurs");
@@ -14,35 +21,71 @@ const ListPage = () => {
     };
     getUser();
   }, []);
-  console.log(data);
+
+  useMemo(() => {
+    if (data) {
+      let draw = [];
+      for (let i = 0; i <= nbrOfCard; i++) {
+        draw.push(data[i]);
+      }
+      setlistData(draw);
+    }
+  }, [nbrOfCard, data]);
+  const OnSearch = (e) => {
+    searchTextField.current = e.target.value;
+    let arrayFiltered = search(
+      data,
+      searchTextField,
+      selectorSearcehBy,
+      selectorSearcehByWork
+    );
+
+    setlistData(arrayFiltered);
+  };
+
   return (
-    <main className="list-main" >
-      <from className="form-wrapper">
-        <div class="search-container">
-          <input type="text" class="search-input" />
+    <main className="list-main">
+      <form className="form-wrapper">
+        <div className="search-container">
+          <input
+            type="text"
+            className="search-input"
+            onChange={(e) => {
+              OnSearch(e);
+            }}
+          />
           {<FontAwesomeIcon icon={faMagnifyingGlass} />}
         </div>
-        <select>
-          <option value="value" selected>
-            {" "}
-            Rechercher par :{" "}
-          </option>
+        <select
+          onChange={(e) => {
+            setselctorSearchBy(e.target.value);
+          }}
+        >
           <option value="name">Nom/Prénom</option>
           <option value="city">Localisation</option>
         </select>
-        <select>
-          <option value="value" selected>
-            Category
-          </option>
-          <option value="grapefruit">Pamplemousse</option>
-          <option value="lime">Citron vert</option>
-          <option selected value="coconut">
-            Noix de coco
-          </option>
-          <option value="mango">Mangue</option>
+        <select
+          onChange={(e) => {
+            OnSearch(e);
+            setselectorSearcehByWork(e.target.value);
+          }}
+        >
+          <option value="null">Service</option>
+          <option value="Client">Client</option>
+          <option value="Marketing">Marketing</option>
+          <option value="echnique">Technique</option>
         </select>
-      </from>
-      <section className="list-wrapper">{data && <List list={data} />}</section>
+      </form>
+      <section className="list-wrapper">
+        {data && <List list={listData} />}
+      </section>
+      <button
+        onClick={() => {
+          setNbrOfCard(nbrOfCard + 7);
+        }}
+      >
+        reload list + 8
+      </button>
     </main>
   );
 };

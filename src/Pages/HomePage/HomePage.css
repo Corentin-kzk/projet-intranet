@@ -9,7 +9,6 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 70px);
 }
 
 .button-container {
@@ -17,26 +16,3 @@ main {
   padding: 10px;
 }
 
-.main-random-user .card {
-  flex-direction: row;
-}
-
-.main-random-user .card .card-cover {
-  width: 250px;
-  height: auto;
-}
-
-.main-random-user .card .card-cover .tag {
-  right: auto;
-  left: -35px;
-}
-
-.main-random-user .card {
-  width: 560px;
-}
-
-.main-random-user .card .card-cover img {
-  border-radius: 15px;
-  -webkit-box-shadow: 5px 13px 50px 13px #6e6e6e;
-  box-shadow: 5px 13px 50px 13px #6e6e6e;
-}

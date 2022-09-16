@@ -1,25 +1,21 @@
 import axios from "axios";
 const URL = import.meta.env.VITE_URLAPI;
 
-async function postData(route, data) {
-  const token = sessionStorage.getItem("jwt");
-  let config = {};
-  if (token) {
-    config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-  }
+async function deleteData(route) {
+  const token = sessionStorage.getItem('jwt');
+  const config = {
+    headers: { Authorization: `Bearer ${token}` }
+};
   try {
-    let res = await axios.post(`${URL}${route}`, data, config);
-    // Work with the response...
-    return res.data;
+    let res = await axios.delete(`${URL}${route}`, config);
+    // console.log(res);
+    
   } catch (err) {
     if (err.response) {
       // The client was given an error response (5xx, 4xx)
       console.error(err.response.data);
       console.error(err.response.status);
       console.error(err.response.headers);
-      return err.response;
     } else if (err.request) {
       // The client never received a response, and the request was never left
       console.error(err.request);
@@ -27,7 +23,8 @@ async function postData(route, data) {
       // Anything else
       console.error("Error", err.message);
     }
+    return err;
   }
 }
 
-export default postData;
+export default deleteData;

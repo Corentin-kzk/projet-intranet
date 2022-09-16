@@ -1,6 +1,6 @@
 .sidebar {
   height: 100%;
-  width: 160px;
+  width: 200px;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -14,7 +14,8 @@
   justify-content: center;
 }
 
-.sidebar a {
+.navlinkbuttons {
+  letter-spacing: 2.5px;
   font-family: "Noto Sans", sans-serif;
   font-weight: 300;
   margin: 7px 29px;
@@ -25,21 +26,19 @@
   display: block;
 }
 
-.sidebar a svg {
+.navlinkbuttons svg {
   margin-right: 10px;
 }
 
-.sidebar a:hover {
+.navlinkbuttons:hover {
   color: #f1f1f1;
 }
-
-
 
 @media screen and (max-height: 450px) {
   .sidebar {
     padding-top: 15px;
   }
-  .sidebar a {
+  .navlinkbuttons {
     font-size: 18px;
   }
 }

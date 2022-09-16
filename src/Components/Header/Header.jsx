@@ -10,13 +10,23 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import LogOut from "../LogOut/LogOut";
+import { useEffect } from "react";
 import "./Header.css";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const user = useSelector((state) => {
+  const [user, setUser] = useState(null);
+
+  const state = useSelector((state) => {
     return state.user;
   });
+
+  console.log("🚀 ~ file: Header.jsx ~ line 28 ~ state BEFORE", state);
+
+  useEffect(() => {
+    setUser(state);
+    console.log("🚀 ~ file: Header.jsx ~ line 28 ~ useEffect ~ state", state);
+  }, []);
 
   return (
     <header>
@@ -65,8 +75,17 @@ const NavBar = () => {
       <span className="open-btn" onClick={() => setIsOpen(true)}>
         <FontAwesomeIcon icon={faBars} />
       </span>
-      <p className="userName">Bonjour {user.firstname}</p>
-      <img src={user.photo} className="avatar" alt="user image" />
+      <p className="userName">Bonjour {user?.firstname}</p>
+      <NavLink
+        to="add/colaborator/"
+        className="navlinkbuttons"
+        style={(isActive) => ({
+          color: isActive ? "white" : "grey",
+        })}
+      >
+        Ajouter un collaborateur
+      </NavLink>
+      <img src={user?.photo} className="avatar" alt="user image" />
     </header>
   );
 };

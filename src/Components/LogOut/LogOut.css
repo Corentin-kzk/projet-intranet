@@ -1,46 +1,48 @@
 header .logout-btn {
-    top: 20px;
-    left: 45px;
-    margin-top: 20px;
+  top: 20px;
+  left: 45px;
+  margin-top: 20px;
 }
 
-
-
 .logout-btn {
-    position: absolute;
-    bottom: 50px;
-    left: 50px;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    border: solid #fff 1px;
-    background-color: #111;
-    color: #fff;
-  }
-  .logout-btn:hover {
-    border: solid #111 1px;
-    background-color: #fff;
-    color: #111;
-  }
-  .logout-btn:before {
-    content: attr(data-text); /* here's the magic */
-    position: absolute;
-  
-    top: -100%;
-    transform: translateX(14%);
-    right: -50%;
-  
-    /* basic styles */
-  
-    padding: 10px;
-    border-radius: 10px;
-    background: #fff;
-    color: #000;
-    text-align: center;
-  
-    display: none; /* hide by default */
-  }
-  
-  .logout-btn:hover:before {
-    display: block;
-  }
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: solid #fff 1px;
+  background-color: #111;
+  color: #fff;
+}
+.logout-btn:hover {
+  border: solid #111 1px;
+  background-color: #fff;
+  color: #111;
+}
+.logout-btn:before {
+  content: attr(data-text); /* here's the magic */
+  position: absolute;
+
+  top: -100%;
+  transform: translateX(14%);
+  right: -50%;
+
+  /* basic styles */
+
+  padding: 10px;
+  border-radius: 10px;
+  background: #fff;
+  color: #000;
+  text-align: center;
+
+  display: none; /* hide by default */
+}
+
+.logout-btn:hover:before {
+  display: block;
+}

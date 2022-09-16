@@ -16,8 +16,7 @@ const HomePage = () => {
   }, [moreRandom]);
 
   return (
-    <div className="main-random-user">
-      <h1>Home</h1>
+    <main className="main-random-user">
       <ProfileCard collaborator={data} />
       <div className="button-container">
         <button
@@ -28,7 +27,7 @@ const HomePage = () => {
           Rencontrer un nouveau profile
         </button>
       </div>
-    </div>
+    </main>
   );
 };
 

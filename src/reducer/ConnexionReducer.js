@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import removelocalsession from "../Service/removelocalsession.service";
 
+
 const token = sessionStorage.getItem("jwt");
-let initialState = {}
+let initialState = {};
 if (!token) {
   initialState = {
     isConnected: false,
   };
 } else {
-    initialState = {
-        isConnected: true,
-      };
+  initialState = {
+    isConnected: true,
+  };
 }
-
 
 export const connexionSlice = createSlice({
   name: "connexion",
@@ -22,8 +22,9 @@ export const connexionSlice = createSlice({
       state.isConnected = true;
     },
     logOut: (state) => {
-      state.isConnected = false;
+      console.log("🚀 ~ file: ConnexionReducer.js ~ line 25 ~ state", state)
       removelocalsession("jwt");
+      state.isConnected = false;
     },
   },
 });

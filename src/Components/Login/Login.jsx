@@ -13,7 +13,6 @@ const Login = () => {
   const [error, setError] = useState(false);
   const [messageError, setMessageError] = useState(null);
   const dispatch = useDispatch();
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,15 +20,15 @@ const Login = () => {
       email: username.trim(),
       password: password.trim(),
     });
-    
+
     if (res.status === 404) {
       setError(true);
-      setMessageError(res.data.error)
+      setMessageError(res.data.error);
     }
     if (res.token) {
-      stockLocalSessions("jwt", res.token);
-      dispatch(logIn());
       dispatch(ADD(res));
+      dispatch(logIn());
+      stockLocalSessions("jwt", res.token);
     }
   };
 
