@@ -15,18 +15,12 @@ import "./Header.css";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
 
-  const state = useSelector((state) => {
+  const user = useSelector((state) => {
     return state.user;
   });
-
-  console.log("🚀 ~ file: Header.jsx ~ line 28 ~ state BEFORE", state);
-
-  useEffect(() => {
-    setUser(state);
-    console.log("🚀 ~ file: Header.jsx ~ line 28 ~ useEffect ~ state", state);
-  }, []);
+  // setUser(state);
 
   return (
     <header>
@@ -76,15 +70,17 @@ const NavBar = () => {
         <FontAwesomeIcon icon={faBars} />
       </span>
       <p className="userName">Bonjour {user?.firstname}</p>
-      <NavLink
-        to="add/colaborator/"
-        className="navlinkbuttons"
-        style={(isActive) => ({
-          color: isActive ? "white" : "grey",
-        })}
-      >
-        Ajouter un collaborateur
-      </NavLink>
+      {user?.isAdmin && (
+        <NavLink
+          to="add/colaborator/"
+          className="navlinkbuttons"
+          style={(isActive) => ({
+            color: isActive ? "white" : "grey",
+          })}
+        >
+          Ajouter un collaborateur
+        </NavLink>
+      )}
       <img src={user?.photo} className="avatar" alt="user image" />
     </header>
   );

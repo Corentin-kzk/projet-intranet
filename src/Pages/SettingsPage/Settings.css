@@ -27,6 +27,7 @@
 
 .wrapper-details-forms .container {
   position: relative;
+  margin: 25px 0px;
 }
 
 /*
@@ -65,10 +66,12 @@ placeholder of input isn't shown
   margin-top: 8px;
   font-size: 14px;
   font-weight: 300;
+  border-bottom: #fff solid 2px;
+  margin: 25px 0px;
+  color: #fff;
 }
 
-.wrapper-details-forms input[type='submit']:hover{
+.wrapper-details-forms input[type="submit"]:hover {
   background-color: #fff;
   color: #111;
-}   
-
+}
