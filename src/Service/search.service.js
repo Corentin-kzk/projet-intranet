@@ -27,19 +27,30 @@ const makeSearch = (collaborator, searchValue, selector1) => {
  * @return ARRAY
  */
 function search(collaborator, searchValue, selector1, selector2) {
+  console.log(
+    "🚀 ~ file: search.service.js ~ line 30 ~ search ~ selector2",
+    selector2.current
+  );
+
   let filteredArray = null;
-  if (selector2 != "null") {
+  if (selector2.current != "null") {
     filteredArray = collaborator.filter((user) => {
-      return user.service.includes(selector2);
+      return user.service.includes(selector2.current);
     });
   }
 
-  const res = makeSearch(
-    filteredArray ? filteredArray : collaborator,
-    searchValue.current,
-    selector1
-  );
-  return res;
+  if (searchValue.current.length > 0) {
+    console.log(
+      "🚀 ~ file: search.service.js ~ line 43 ~ search ~ searchValue.current.length",
+      searchValue.current.length
+    );
+    const res = makeSearch(
+      filteredArray ? filteredArray : collaborator,
+      searchValue.current,
+      selector1
+    );
+    return res;
+  } else return filteredArray;
 }
 
 export default search;

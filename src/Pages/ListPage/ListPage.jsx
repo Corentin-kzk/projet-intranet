@@ -12,10 +12,12 @@ const ListPage = () => {
   const [listData, setlistData] = useState([]);
   const [nbrOfCard, setNbrOfCard] = useState(7);
   const [selectorSearcehBy, setselctorSearchBy] = useState("name");
-  const [selectorSearcehByWork, setselectorSearcehByWork] = useState("null");
+  // const [selectorSearcehByWork, setselectorSearcehByWork] = useState("null");
   const isDelete = useSelector((state) => state.delete);
-  console.log("🚀 ~ file: ListPage.jsx ~ line 17 ~ ListPage ~ isDelete", isDelete)
+  const selectorSearcehByWork = useRef();
   const searchTextField = useRef();
+  selectorSearcehByWork.current = "null";
+  searchTextField.current = "";
 
   useEffect(() => {
     const getUser = async () => {
@@ -34,15 +36,14 @@ const ListPage = () => {
       setlistData(draw);
     }
   }, [nbrOfCard, data]);
-  const OnSearch = (e) => {
-    searchTextField.current = e.target.value;
+
+  const OnSearch = () => {
     let arrayFiltered = search(
       data,
       searchTextField,
       selectorSearcehBy,
       selectorSearcehByWork
     );
-
     setlistData(arrayFiltered);
   };
 
@@ -54,7 +55,8 @@ const ListPage = () => {
             type="text"
             className="search-input"
             onChange={(e) => {
-              OnSearch(e);
+              searchTextField.current = e.target.value;
+              OnSearch();
             }}
           />
           {<FontAwesomeIcon icon={faMagnifyingGlass} />}
@@ -69,8 +71,8 @@ const ListPage = () => {
         </select>
         <select
           onChange={(e) => {
-            OnSearch(e);
-            setselectorSearcehByWork(e.target.value);
+            selectorSearcehByWork.current = e.target.value;
+            OnSearch();
           }}
         >
           <option value="null">Service</option>
