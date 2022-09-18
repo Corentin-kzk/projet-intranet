@@ -10,17 +10,16 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import LogOut from "../LogOut/LogOut";
-import { useEffect } from "react";
 import "./Header.css";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // const [user, setUser] = useState(null);
 
-  const user = useSelector((state) => {
-    return state.user;
-  });
-  // setUser(state);
+  let localUser = sessionStorage.getItem("user");
+  localUser = JSON.parse(localUser);
+  if (!localUser) {
+    return <>Loader</>;
+  }
 
   return (
     <header>
@@ -69,10 +68,10 @@ const NavBar = () => {
       <span className="open-btn" onClick={() => setIsOpen(true)}>
         <FontAwesomeIcon icon={faBars} />
       </span>
-      <p className="userName">Bonjour {user?.firstname}</p>
-      {user?.isAdmin && (
+      <p className="userName">Bonjour {localUser?.firstname}</p>
+      {localUser?.isAdmin && (
         <NavLink
-          to="add/colaborator/"
+          to="add/collaborator/"
           className="navlinkbuttons"
           style={(isActive) => ({
             color: isActive ? "white" : "grey",
@@ -81,7 +80,7 @@ const NavBar = () => {
           Ajouter un collaborateur
         </NavLink>
       )}
-      <img src={user?.photo} className="avatar" alt="user image" />
+      <img src={localUser?.photo} className="avatar" alt="user image" />
     </header>
   );
 };

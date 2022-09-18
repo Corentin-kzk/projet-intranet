@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Settings.css";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import putData from "../../Service/putdata.service";
 
 const SettingsPage = () => {
+  const [PasswConfirm, setPasswConfirm] = useState(null);
+  const [Error, setError] = useState(null);
   const user = useSelector((state) => {
     return state.user;
   });
@@ -13,15 +15,17 @@ const SettingsPage = () => {
 
   const putDataForm = async (data) => {
     let res = await putData(`collaborateurs/${user.id}`, data);
-    console.log(res);
   };
   const onSubmitForm = (data) => {
-    console.log("🚀 ~ file: SettingsPage.jsx ~ line 11 ~ user ~ user", user);
-    console.log(
-      "🚀 ~ file: SettingsPage.jsx ~ line 21 ~ onSubmit ~ data",
-      data
-    );
-    putDataForm(data);
+    const pssw = data.password;
+    const re = new RegExp(PasswConfirm, "gi");
+    if (pssw && !pssw.match(re)) {
+      setError(true);
+      return;
+    } else {
+      putDataForm(data);
+      setError(false);
+    }
   };
 
   return (
@@ -96,11 +100,31 @@ const SettingsPage = () => {
               placeholder="PassWord"
               {...register("password")}
             />
+            {Error && (
+              <span style={{ color: "red" }}>Not the same password </span>
+            )}
             <label className="container__label">passWord :</label>
           </div>
           <div className="container">
-            <input className="container__input" placeholder="Confrim passWord" />
+            <input
+              className="container__input"
+              placeholder="Confrim passWord"
+              onInput={(e) => {
+                setPasswConfirm(e.target.value);
+              }}
+            />
+            {Error && (
+              <span style={{ color: "red" }}>Not the same password </span>
+            )}
             <label className="container__label">Confrim passWord :</label>
+          </div>
+          <div className="container">
+            <span>Admin : </span>
+            <input
+              type="checkbox"
+              value={user.isAdmin ? true : false}
+              {...register("isAdmin")}
+            />
           </div>
           <select
             name="service"
@@ -113,6 +137,7 @@ const SettingsPage = () => {
             <option value="Marketing">Marketing</option>
             <option value="Technique">Technique</option>
           </select>
+
           <select
             name="gender"
             id="gender"

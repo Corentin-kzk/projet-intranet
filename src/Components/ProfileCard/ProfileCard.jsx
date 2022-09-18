@@ -8,7 +8,7 @@ import {
   faPenToSquare,
   faX,
 } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button, Modal } from "rsuite";
 import { RemindFill } from "@rsuite/icons";
@@ -16,15 +16,23 @@ import { useForm } from "react-hook-form";
 import "./ProfileCard.css";
 import "rsuite/dist/rsuite.min.css";
 import deleteData from "../../Service/deleteData.service";
+import { isDelete } from "../../reducer/DeletedUser";
+
 const ProfileCard = ({ collaborator }) => {
   const { register, handleSubmit } = useForm();
-  const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  let localUser = sessionStorage.getItem("user");
+  localUser = JSON.parse(localUser);
+  if (!localUser) {
+    return <>Loader</>;
+  }
+  const dispatch = useDispatch();
 
   const OnRedirect = () => {
     navigate(`/collaborator/${collaborator?.id}`);
@@ -39,7 +47,7 @@ const ProfileCard = ({ collaborator }) => {
 
     setError(false);
     const err = deleteData(`collaborateurs/${collaborator.id}`);
-    location.reload();
+    dispatch(isDelete());
     handleClose();
   };
 
@@ -73,7 +81,7 @@ const ProfileCard = ({ collaborator }) => {
             <p> {collaborator.birthdate}</p>
           </li>
         </ul>
-        {user.isAdmin && (
+        {localUser.isAdmin && (
           <div className="button-container">
             <button
               className="noselect red"
@@ -102,7 +110,6 @@ const ProfileCard = ({ collaborator }) => {
                   className="fixed-top"
                   onClick={handleClose}
                   appearance="subtle"
-                  
                 >
                   <FontAwesomeIcon icon={faX} />
                 </Button>

@@ -22,7 +22,6 @@ export const connexionSlice = createSlice({
       state.isConnected = true;
     },
     logOut: (state) => {
-      console.log("🚀 ~ file: ConnexionReducer.js ~ line 25 ~ state", state)
       removelocalsession("jwt");
       state.isConnected = false;
     },

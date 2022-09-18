@@ -8,7 +8,6 @@ async function deleteData(route) {
 };
   try {
     let res = await axios.delete(`${URL}${route}`, config);
-    // console.log(res);
     
   } catch (err) {
     if (err.response) {

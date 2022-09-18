@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import postData from "../../Service/postdata.service";
 import "./Login.css";
 import stockLocalSessions from "../../Service/stocklocalsessions.service";

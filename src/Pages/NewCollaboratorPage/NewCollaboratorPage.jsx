@@ -1,18 +1,16 @@
 import "./NewCollaboratorPage.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
 import postData from "../../Service/postdata.service";
-import getData from "../../Service/getdata.service";
 
 const NewCollaboratorPage = () => {
   const { register, handleSubmit } = useForm();
   const [user, setUserData] = useState(null);
   const [PasswConfirm, setPasswConfirm] = useState(null);
+  const [Error, setError] = useState(null);
 
   const putDataForm = async (data) => {
     let res = await postData(`collaborateurs/`, data);
-    console.log(res);
     setUserData(res);
   };
   const onSubmitForm = (data) => {
@@ -20,15 +18,18 @@ const NewCollaboratorPage = () => {
     const re = new RegExp(PasswConfirm, "gi");
     if (!pssw.match(re)) {
       setError(true);
+      return;
+    } else {
+      putDataForm(data);
+      setError(false);
     }
-    putDataForm(data);
   };
 
   return (
     <main className="settings-wrapper">
       {user && (
-        <div class="avatar-settings">
-          <img class="avatar-image" src={user?.photo} />
+        <div className="avatar-settings">
+          <img className="avatar-image" src={user?.photo} />
         </div>
       )}
 
@@ -37,80 +38,102 @@ const NewCollaboratorPage = () => {
       </h1>
       <section className="wrapper-details-forms">
         <form onSubmit={handleSubmit(onSubmitForm)}>
-          <div class="container">
+          <div className="container">
             <input
               placeholder="Firstname"
               defaultValue={user?.firstname}
-              class="container__input"
+              className="container__input"
               {...register("firstname")}
             />
-            <label class="container__label">First Name :</label>
+            <label className="container__label">First Name :</label>
           </div>
-          <div class="container">
+          <div className="container">
             <input
               placeholder="Lastname"
               defaultValue={user?.lastname}
-              class="container__input"
+              className="container__input"
               {...register("lastname")}
             />
-            <label class="container__label">Last Name :</label>
+            <label className="container__label">Last Name :</label>
           </div>
-          <div class="container">
+          <div className="container">
             <input
               placeholder="Email"
               defaultValue={user?.email}
-              class="container__input"
+              className="container__input"
               type="email"
               {...register("email")}
             />
-            <label class="container__label">Email:</label>
+            <label className="container__label">Email:</label>
           </div>
-          <div class="container">
+          <div className="container">
             <input
               placeholder="Phone number"
               defaultValue={user?.phone}
-              class="container__input"
+              className="container__input"
               type="tel"
               {...register("phone")}
             />
-            <label class="container__label">Phone Number</label>
+            <label className="container__label">Phone Number</label>
           </div>
-          <div class="container">
+          <div className="container">
             <input
               placeholder="City"
               defaultValue={user?.city}
-              class="container__input"
+              className="container__input"
               {...register("city")}
             />
-            <label class="container__label">City :</label>
+            <label className="container__label">City :</label>
           </div>
-          <div class="container">
+          <div className="container">
             <input
               placeholder="Country"
               defaultValue={user?.country}
-              class="container__input"
+              className="container__input"
               {...register("country")}
             />
-            <label class="container__label">Country :</label>
+            <label className="container__label">Country :</label>
           </div>
-          <div class="container">
+          <div className="container">
             <input
-              class="container__input"
+              className="container__input"
               placeholder="PassWord"
               {...register("password")}
             />
-            <label class="container__label">passWord :</label>
+            {Error && (
+              <span style={{ color: "red" }}>Not the same password </span>
+            )}
+            <label className="container__label">passWord :</label>
           </div>
-          <div class="container">
+          <div className="container">
             <input
-              class="container__input"
+              className="container__input"
               placeholder="Confrim passWord"
               onInput={(e) => {
-                setPasswConfirm(e.target.value)
+                setPasswConfirm(e.target.value);
               }}
             />
-            <label class="container__label">Confrim passWord :</label>
+            {Error && (
+              <span style={{ color: "red" }}>Not the same password </span>
+            )}
+            <label className="container__label">Confrim passWord :</label>
           </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItem: "center",
+            }}
+          >
+            <span>Admin : </span>
+            <input
+              type="checkbox"
+              value={user?.isAdmin && true}
+              {...register("isAdmin")}
+              id="check"
+            />
+          </div>
+
           <select
             name="service"
             id="service"

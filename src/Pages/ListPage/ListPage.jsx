@@ -5,6 +5,7 @@ import List from "../../Components/List/List";
 import getData from "../../Service/getdata.service";
 import "./ListPage.css";
 import search from "../../Service/search.service";
+import { useSelector } from "react-redux";
 
 const ListPage = () => {
   const [data, setData] = useState(null);
@@ -12,6 +13,8 @@ const ListPage = () => {
   const [nbrOfCard, setNbrOfCard] = useState(7);
   const [selectorSearcehBy, setselctorSearchBy] = useState("name");
   const [selectorSearcehByWork, setselectorSearcehByWork] = useState("null");
+  const isDelete = useSelector((state) => state.delete);
+  console.log("🚀 ~ file: ListPage.jsx ~ line 17 ~ ListPage ~ isDelete", isDelete)
   const searchTextField = useRef();
 
   useEffect(() => {
@@ -20,7 +23,7 @@ const ListPage = () => {
       setData(collabData);
     };
     getUser();
-  }, []);
+  }, [isDelete]);
 
   useMemo(() => {
     if (data) {
