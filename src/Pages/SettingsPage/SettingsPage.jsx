@@ -3,6 +3,7 @@ import "./Settings.css";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import putData from "../../Service/putdata.service";
+import { Modal } from "rsuite";
 
 const SettingsPage = () => {
   const [PasswConfirm, setPasswConfirm] = useState(null);
@@ -10,11 +11,15 @@ const SettingsPage = () => {
   const user = useSelector((state) => {
     return state.user;
   });
-
+  const [open, setOpen] = useState(false);
+  const [succes, setSucces] = useState(null);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const { register, handleSubmit } = useForm();
 
   const putDataForm = async (data) => {
     let res = await putData(`collaborateurs/${user.id}`, data);
+    setSucces(res);
   };
   const onSubmitForm = (data) => {
     const pssw = data.password;
@@ -25,11 +30,17 @@ const SettingsPage = () => {
     } else {
       putDataForm(data);
       setError(false);
+      handleOpen();
     }
   };
 
   return (
     <main className="settings-wrapper">
+      <Modal open={open} onClose={handleClose}>
+        <Modal.Header>
+          <Modal.Title style={{ color: "#fff" }}>{succes?.success}</Modal.Title>
+        </Modal.Header>
+      </Modal>
       <div className="avatar-settings">
         <img className="avatar-image" src={user.photo} />
       </div>
@@ -117,14 +128,6 @@ const SettingsPage = () => {
               <span style={{ color: "red" }}>Not the same password </span>
             )}
             <label className="container__label">Confrim passWord :</label>
-          </div>
-          <div className="container">
-            <span>Admin : </span>
-            <input
-              type="checkbox"
-              value={user.isAdmin ? true : false}
-              {...register("isAdmin")}
-            />
           </div>
           <select
             name="service"

@@ -3,13 +3,17 @@ import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import putData from "../../Service/putdata.service";
 import getData from "../../Service/getdata.service";
+import { Modal } from "rsuite";
 
 const CollaboratorPage = () => {
   const { register, handleSubmit } = useForm();
   const [user, setUserData] = useState(null);
   const [PasswConfirm, setPasswConfirm] = useState(null);
   const [Error, setError] = useState(false);
-
+  const [open, setOpen] = useState(false);
+  const [succes, setSucces] = useState(null);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const { id } = useParams();
 
   const getUserDataById = async () => {
@@ -22,6 +26,9 @@ const CollaboratorPage = () => {
 
   const putDataForm = async (data) => {
     let res = await putData(`collaborateurs/${id}`, data);
+    console.log("🚀 ~ file: CollaboratorPage.jsx ~ line 29 ~ putDataForm ~ res", res)
+    
+    setSucces(res);
     setUserData(data);
   };
   const onSubmitForm = (data) => {
@@ -30,10 +37,14 @@ const CollaboratorPage = () => {
       setError(true);
       return;
     } else {
+      console.log(
+        "🚀 ~ file: CollaboratorPage.jsx ~ line 39 ~ onSubmitForm ~ data",
+        data
+      );
       setError(false);
       putDataForm(data);
+      handleOpen();
     }
-    putDataForm(data);
   };
   if (!user) {
     return (
@@ -45,6 +56,11 @@ const CollaboratorPage = () => {
 
   return (
     <main className="settings-wrapper">
+      <Modal open={open} onClose={handleClose}>
+        <Modal.Header>
+          <Modal.Title style={{color : "#fff"}} >{succes?.success}</Modal.Title>
+        </Modal.Header>
+      </Modal>
       <div className="avatar-settings">
         <img className="avatar-image" src={user.photo} />
       </div>
@@ -133,15 +149,6 @@ const CollaboratorPage = () => {
             )}
             <label className="container__label">Confrim passWord :</label>
           </div>
-          <div className="container">
-            <span>Admin : </span>
-            <input
-              type="checkbox"
-              value={user.isAdmin ? true : false}
-              {...register("isAdmin")}
-            />
-          </div>
-
           <select
             name="service"
             id="service"

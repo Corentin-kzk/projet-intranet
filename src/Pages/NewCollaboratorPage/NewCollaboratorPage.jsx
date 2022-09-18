@@ -2,16 +2,22 @@ import "./NewCollaboratorPage.css";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import postData from "../../Service/postdata.service";
+import { Modal } from "rsuite";
 
 const NewCollaboratorPage = () => {
   const { register, handleSubmit } = useForm();
   const [user, setUserData] = useState(null);
   const [PasswConfirm, setPasswConfirm] = useState(null);
   const [Error, setError] = useState(null);
+  const [succes, setSucces] = useState(null);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const putDataForm = async (data) => {
     let res = await postData(`collaborateurs/`, data);
     setUserData(res);
+    setSucces(res);
   };
   const onSubmitForm = (data) => {
     const pssw = data.password;
@@ -22,11 +28,17 @@ const NewCollaboratorPage = () => {
     } else {
       putDataForm(data);
       setError(false);
+      handleOpen();
     }
   };
 
   return (
     <main className="settings-wrapper">
+       <Modal open={open} onClose={handleClose}>
+        <Modal.Header>
+          <Modal.Title style={{color : "#fff"}} >{succes?.success}</Modal.Title>
+        </Modal.Header>
+      </Modal>
       {user && (
         <div className="avatar-settings">
           <img className="avatar-image" src={user?.photo} />

@@ -12,7 +12,6 @@ const ListPage = () => {
   const [listData, setlistData] = useState([]);
   const [nbrOfCard, setNbrOfCard] = useState(7);
   const [selectorSearcehBy, setselctorSearchBy] = useState("name");
-  // const [selectorSearcehByWork, setselectorSearcehByWork] = useState("null");
   const isDelete = useSelector((state) => state.delete);
   const selectorSearcehByWork = useRef();
   const searchTextField = useRef();
